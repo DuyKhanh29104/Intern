@@ -50,6 +50,16 @@ module.exports = {
       const deleted = await Product.destroyOne({ id });
       if (!deleted) return res.notFound();
       return res.json({ message: 'Product deleted' });
-    }
+    },
+    
+    myProducts: async function (req, res) {
+      try {
+        const userId = req.user.id;
+        const products = await Product.find({ owner: userId });
+        return res.json(products);
+      } catch (err) {
+        return res.serverError({ message: 'Error fetching user products', err });
+      }
+    }    
   };
   

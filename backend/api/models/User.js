@@ -12,6 +12,11 @@ module.exports = {
       type: 'string',
       required: true,
       protect: true
+    },
+    role: {
+      type: 'string',
+      isIn: ['admin', 'editor', 'viewer'],
+      defaultsTo: 'viewer'
     }
   },
 

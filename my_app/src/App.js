@@ -8,6 +8,8 @@ import ProductsPage from './pages/ProductsPage';
 import AddProductPage from './pages/AddProductPage';
 import AboutPage from './pages/AboutPage';
 import './App.css';
+import MyProductsPage from './pages/MyProductsPage';
+import ManageRolesPage from './pages/ManageRolesPage';
 
 function App() {
   const location = useLocation();
@@ -59,7 +61,9 @@ function App() {
       <div className="main">
         <nav className="sidebar">
           <ul className="nav-list">
-            <li><NavLink to="/products" className="nav-item">Products</NavLink></li>
+            <li><NavLink to="/products" className="nav-item">All Products</NavLink></li>
+            <li><NavLink to="/myproducts" className="nav-item">My Products</NavLink></li>
+            <li><NavLink to="/manageroles" className="nav-item">Manage Role</NavLink></li>
             <li><NavLink to="/add" className="nav-item">Add</NavLink></li>
             <li><NavLink to="/about" className="nav-item">About</NavLink></li>
           </ul>
@@ -73,6 +77,8 @@ function App() {
         <main className="content">
           <Routes>
             <Route path="/products" element={<ProductsPage />} />
+            <Route path="/myproducts" element={<MyProductsPage/>} />
+            <Route path="/manageroles" element={<ManageRolesPage/>} />
             <Route path="/add" element={<AddProductPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="*" element={<p>404 Not Found</p>} />
