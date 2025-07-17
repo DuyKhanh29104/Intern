@@ -9,7 +9,8 @@ import AddProductPage from './pages/AddProductPage';
 import AboutPage from './pages/AboutPage';
 import './App.css';
 import MyProductsPage from './pages/MyProductsPage';
-import ManageRolesPage from './pages/ManageRolesPage';
+import ManagePermissionsPage from './pages/ManagePermissionsPage';
+import {hasPermission} from './components/permission';
 
 function App() {
   const location = useLocation();
@@ -61,10 +62,16 @@ function App() {
       <div className="main">
         <nav className="sidebar">
           <ul className="nav-list">
-            <li><NavLink to="/products" className="nav-item">All Products</NavLink></li>
+            {hasPermission('view_product') && (
+              <li><NavLink to="/products" className="nav-item">All Products</NavLink></li>
+            )}
             <li><NavLink to="/myproducts" className="nav-item">My Products</NavLink></li>
-            <li><NavLink to="/manageroles" className="nav-item">Manage Role</NavLink></li>
-            <li><NavLink to="/add" className="nav-item">Add</NavLink></li>
+            {hasPermission('view_user') && (
+              <li><NavLink to="/manageroles" className="nav-item">Manage Role</NavLink></li>
+            )}
+            {hasPermission('add_product') && (
+              <li><NavLink to="/add" className="nav-item">Add</NavLink></li>
+            )}
             <li><NavLink to="/about" className="nav-item">About</NavLink></li>
           </ul>
           <div className="theme-switcher">
@@ -78,7 +85,7 @@ function App() {
           <Routes>
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/myproducts" element={<MyProductsPage/>} />
-            <Route path="/manageroles" element={<ManageRolesPage/>} />
+            <Route path="/manageroles" element={<ManagePermissionsPage/>} />
             <Route path="/add" element={<AddProductPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="*" element={<p>404 Not Found</p>} />

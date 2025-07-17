@@ -37,6 +37,7 @@ module.exports = {
   
     // PUT /api/products/:id
     update: async (req, res) => {
+      console.log('req.options.permission in update:', req.options.permission);
       const { id } = req.params;
       const { name, price } = req.body;
       const updated = await Product.updateOne({ id }).set({ name, price });
@@ -46,6 +47,7 @@ module.exports = {
   
     // DELETE /api/products/:id
     delete: async (req, res) => {
+      console.log('req.options.permission in update:', req.options.permission);
       const { id } = req.params;
       const deleted = await Product.destroyOne({ id });
       if (!deleted) return res.notFound();

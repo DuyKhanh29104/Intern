@@ -13,10 +13,9 @@ module.exports = {
       required: true,
       protect: true
     },
-    role: {
-      type: 'string',
-      isIn: ['admin', 'editor', 'viewer'],
-      defaultsTo: 'viewer'
+    permissions: {
+      type: 'json',
+      defaultsTo: ['view_product', 'add_product', 'edit_product', 'delete_product', 'view_user', 'add_user_permission', 'remove_user_permission']
     }
   },
 

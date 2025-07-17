@@ -28,6 +28,7 @@ function LoginPage() {
 
       const data = await res.json();
       login(data.token);
+      localStorage.setItem('permissions', JSON.stringify(data.user.permissions));
       navigate('/products');
     } catch (err) {
       setError(err.message);

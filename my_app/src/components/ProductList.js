@@ -3,6 +3,7 @@ import Input from './Input';
 import Button from './Button';
 import ModalConfirm from './ModalConfirm';
 import ModalEdit from './ModalEdit';
+import {hasPermission} from './permission';
 
 function ProductList({ products, setProducts }) {
   const [search, setSearch] = useState('');
@@ -124,13 +125,17 @@ function ProductList({ products, setProducts }) {
               <td>{p.name}</td>
               <td>{p.price}</td>
               <td style={{ textAlign: 'center' }}>
-                <Button color='blue' onClick={() => {
-                  setEditingId(p.id);
-                  setEditForm({name: p.name, price: p.price});
-                }}>
-                  Edit
-                </Button>{' '}
-                <Button color="red" onClick={() => setDeleteId(p.id)}>Delete</Button>
+                {hasPermission('edit_product') && (
+                  <Button color='blue' onClick={() => {
+                    setEditingId(p.id);
+                    setEditForm({ name: p.name, price: p.price });
+                  }}>
+                    Edit
+                  </Button>
+                )}{' '}
+                {hasPermission('delete_product') && (
+                  <Button color="red" onClick={() => setDeleteId(p.id)}>Delete</Button>
+                )}
               </td>
             </tr>
           ))}

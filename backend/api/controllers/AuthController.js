@@ -38,7 +38,15 @@ module.exports = {
 
       const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '5h' });
 
-      return res.json({ message: 'Login successful', token });
+      return res.json({
+        message: 'Login successful',
+        token,
+        user: {
+          id: user.id,
+          email: user.email,
+          permissions: user.permissions || []
+        }
+      });
     } catch (err) {
       return res.serverError(err);
     }
