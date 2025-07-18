@@ -119,7 +119,8 @@ function ProductList({ products, setProducts }) {
           {currentItems.map((p, idx) => (
             <tr key={p.id} 
             style={{
-              backgroundColor: idx % 2 === 0 ? '#f9f9f9' : '#e0e0e0'
+              backgroundColor: idx % 2 === 0 ? '#f9f9f9' : '#e0e0e0',
+              height: '60px'
             }}>
               <td>{(page - 1) * pageSize + idx + 1}</td>
               <td>{p.name}</td>

@@ -11,6 +11,8 @@ import './App.css';
 import MyProductsPage from './pages/MyProductsPage';
 import ManagePermissionsPage from './pages/ManagePermissionsPage';
 import {hasPermission} from './components/permission';
+import PageManagement from './pageManagement/PageManagement';
+
 
 function App() {
   const location = useLocation();
@@ -73,6 +75,7 @@ function App() {
               <li><NavLink to="/add" className="nav-item">Add</NavLink></li>
             )}
             <li><NavLink to="/about" className="nav-item">About</NavLink></li>
+            <li><NavLink to="/page-management" className="nav-item">Page CMS</NavLink></li>
           </ul>
           <div className="theme-switcher">
             <button onClick={toggleTheme} className="nav-item">
@@ -89,6 +92,7 @@ function App() {
             <Route path="/add" element={<AddProductPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="*" element={<p>404 Not Found</p>} />
+            <Route path="/page-management" element={<PageManagement />} />
           </Routes>
         </main>
       </div>
