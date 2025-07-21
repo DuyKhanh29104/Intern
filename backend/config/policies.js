@@ -1,8 +1,8 @@
 module.exports.policies = {
   ProductController: {
     create: ['isAuthenticated', 'hasPermission'],
-    update: true,
-    delete: true,
+    update: ['isAuthenticated', 'hasPermission'],
+    delete: ['isAuthenticated', 'hasPermission'],
     find: ['isAuthenticated', 'hasPermission'],
     '*': 'isAuthenticated'
   },

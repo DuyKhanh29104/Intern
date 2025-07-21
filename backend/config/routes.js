@@ -24,7 +24,12 @@ module.exports.routes = {
     permission: 'edit_product'
   },
 
-  'DELETE /api/products/:id': ProductController.delete,
+  'DELETE /api/products/:id': {
+    controller: 'ProductController',
+    action: 'delete',
+    policies: ['isAuthenticated', 'hasPermission'],
+    permission: 'delete_product'
+  },
 
   'POST /api/register': 'AuthController.register',
   'POST /api/login': 'AuthController.login',

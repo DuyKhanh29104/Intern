@@ -49,16 +49,20 @@ function ProductList({ products, setProducts }) {
     if (!deleteId) return;
   
     try {
-      const response = await fetch(`/api/products/${deleteId}`, {
+      const response = await fetch(`http://localhost:1337/api/products/${deleteId}`, {
 
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+        },
       });
   
       if (!response.ok) {
+        const errorText = await response.text();
         throw new Error('Failed to delete');
       }
   
-      // Xoá khỏi danh sách hiển thị
       setProducts(prev => prev.filter(p => p.id !== deleteId));
   
       console.log('Deleted product ID:', deleteId);
@@ -74,7 +78,10 @@ function ProductList({ products, setProducts }) {
     try {
       const response = await fetch(`/api/products/${editingId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+        },
         body: JSON.stringify(editForm),
       });
   
