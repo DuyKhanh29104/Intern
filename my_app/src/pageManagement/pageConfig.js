@@ -22,12 +22,6 @@ const config = {
       // },
       // { name: 'visible', label: 'Hiển thị', type: 'checkbox' },
     ],
-    permissions: {
-      view: "view_product",
-      add: "add_product",
-      edit: "edit_product",
-      delete: "delete_product",
-    },
   };
 
   export default config;

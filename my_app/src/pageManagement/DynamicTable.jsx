@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from './DynamicButton';
 
-export default function DynamicTable({ items, fields, onUpdate, onDelete, permissionKeys }) {
+export default function DynamicTable({ items, fields, onUpdate, onDelete }) {
   const [editId, setEditId] = useState(null);
   const [form, setForm] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
